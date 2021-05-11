@@ -1,0 +1,20 @@
+#intellij config
+.idea/
+*.iml
+
+# tools
+.gradle/
+
+# build outputs
+build/
+out/
+
+# logs, backups, etc.
+*~
+*.log
+.allure
+.vertx
+rs
+*/allure-results
+*/.vertx
+node_modules
