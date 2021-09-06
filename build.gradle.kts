@@ -3,12 +3,21 @@ plugins {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_16
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("org.jetbrains:annotations:20.1.0")
 }
 
 tasks.withType<JavaCompile> {
     val compilerArgs = options.compilerArgs
     compilerArgs.add("--enable-preview")
+    compilerArgs.add("-Xlint:preview")
 }
 
 tasks.withType<JavaExec> {

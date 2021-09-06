@@ -11,12 +11,12 @@ public class UserRepository {
     private List<UserType> users = List.of(
             new User(new BasicClaims("Alice", "Wunderland"),
                     List.of(
-                            new Email("alice@wunderland.de"),
+                            Contact.createEmail("alice@wunderland.de").get(),
                             new PhoneNumber("49")
                     ),
                     new Profile(UiMode.DARK)),
             new LightUser(new BasicClaims("Bob", "Baumeister"),
-                    List.of(new Email("bob@baumeister.de")),
+                    List.of(Contact.createEmail("bob@baumeister.de").get()),
                     new Profile(UiMode.LIGHT)),
             new SuperUser(new BasicClaims("Super", "Man"),
                     List.of(new PhoneNumber("007")),

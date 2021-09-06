@@ -13,37 +13,20 @@ public sealed interface UserType
     BasicClaims basicClaims();
 
     default  List<Contact> contacts() {
-        // Not supported in java 16
-        // return switch (this) {
-//            case User u -> fn.apply(u.contacts());
-//            case LightUser u -> fn.apply(u.contacts());
-//            case SuperUser u -> fn.apply(u.contacts());
-//            case Guest g -> Optional.empty();
-//        };
-        if (this instanceof User u) {
-            return u.contacts();
-        } else if (this instanceof LightUser u) {
-            return u.contacts();
-        } else if (this instanceof SuperUser u) {
-            return u.contacts();
-        } else if (this instanceof Guest u) {
-            return List.of();
-        } else {
-            return List.of();
-        }
+         return switch (this) {
+            case User u -> u.contacts();
+            case LightUser u -> u.contacts();
+            case SuperUser u -> u.contacts();
+            case Guest g -> List.of();
+        };
     }
 
     default <T> Optional<T> mapProfile(Function<Profile, T> fn) {
-        if (this instanceof User u) {
-            return Optional.ofNullable(fn.apply(u.profile()));
-        } else if (this instanceof LightUser u) {
-            return Optional.ofNullable(fn.apply(u.profile()));
-        } else if (this instanceof SuperUser u) {
-            return Optional.ofNullable(fn.apply(u.profile()));
-        } else if (this instanceof Guest u) {
-            return Optional.empty();
-        } else {
-            return Optional.empty();
-        }
+        return switch (this) {
+            case User u -> Optional.ofNullable(fn.apply(u.profile()));
+            case LightUser u -> Optional.ofNullable(fn.apply(u.profile()));
+            case SuperUser u -> Optional.ofNullable(fn.apply(u.profile()));
+            case Guest g -> Optional.empty();
+        };
     }
 }

@@ -1,15 +1,10 @@
 package com.conpinion.user.contact;
 
-import java.util.Objects;
-import java.util.Optional;
+public sealed interface Email extends Contact {
+    String value();
+}
 
-public final record Email(String value) implements Contact {
-    public Email {
-        Objects.requireNonNull(value);
-        if (!value.contains("@")) {
-            throw new IllegalArgumentException();
-        }
-    }
+final record EmailImpl(String value) implements Email {
 }
 
 //public final class Email implements Contact{

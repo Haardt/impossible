@@ -3,6 +3,7 @@ package com.conpinion.user;
 import com.conpinion.db.UserRepository;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 public class UserService {
     private final UserRepository userRepository;
