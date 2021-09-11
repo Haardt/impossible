@@ -31,13 +31,12 @@ public class Main {
 //        pbxService.callNumber(guest, "1234");
 
         var result = Result.<String, String>right("TestData");
-        Function<String, String> toUpper = (String string) -> string.toUpperCase();
         Function<String, String> splitter = (String string) ->
                 String.join("-", string.split("(?<=.)(?=(\\p{Upper}))"));
 
         result
                 .map(splitter)
-                .map(toUpper)
+                .map(String::toUpperCase)
                 .then(value -> System.out.println("Right: " + value))
                 .orError(e -> System.out.println("Left:" + e));
     }
