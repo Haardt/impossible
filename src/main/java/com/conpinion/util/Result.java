@@ -27,7 +27,7 @@ public sealed interface Result<R, L> {
         };
     }
 
-    default <X> Result<X, L> then(Consumer<R> fn) {
+    default Result<Void, L> then(Consumer<R> fn) {
         return switch (this) {
             case Right<R,L> r -> {
                 fn.accept(r.value);
