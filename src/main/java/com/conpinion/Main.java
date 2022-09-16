@@ -5,6 +5,7 @@ import com.conpinion.pbx.ApiService;
 import com.conpinion.pbx.PbxService;
 import com.conpinion.pbx.RestService;
 import com.conpinion.user.*;
+import com.conpinion.user.contact.Email;
 import com.conpinion.util.Result;
 
 import java.util.Arrays;

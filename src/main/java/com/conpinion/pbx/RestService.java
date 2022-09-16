@@ -41,17 +41,19 @@ public class RestService {
     }
 
     public int post(String firstName, String lastName, String email) {
-        record RequestValidator(String error, Optional optional) {}
+        record RequestValidator(String error, Optional optional) {
+        }
 
         var val = List.of(
                 new RequestValidator("firstName", Optional.ofNullable(firstName)),
                 new RequestValidator("lastName", Optional.ofNullable(lastName)),
                 new RequestValidator("email", Contact.createEmail(email)));
 
-        var errors = val.stream().map(x -> switch (x.optional.orElse(null)) {
-            case null -> Optional.of(x.error);
-            default -> Optional.<String>empty();
-        }).filter(Optional::isPresent).map(Optional::get).toList();
+        var errors = val.stream().map(x ->
+                switch (x.optional.orElse(null)) {
+                    case null -> Optional.of(x.error);
+                    default -> Optional.<String>empty();
+                }).filter(Optional::isPresent).map(Optional::get).toList();
         System.out.println("Errors" + errors);
 
         new LightUser(new BasicClaims(firstName, lastName),
